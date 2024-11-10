@@ -1,3 +1,6 @@
+
+https://chatgpt.com/share/6730611d-c3f8-800e-b1ff-11cf1187c320
+
 # what is semantic segmentation in computer vision?
 Semantic segmentation is a computer vision task that involves dividing an image into distinct regions and labeling each pixel according to the object or category it belongs to. 
 It is a type of image segmentation that assigns a class label (such as "cat," "tree," "road," etc.) to every pixel in an image, creating a pixel-level understanding of the scene.
