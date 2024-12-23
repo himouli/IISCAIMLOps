@@ -704,3 +704,5 @@ This setup allows the model to produce 3 output values (logits) for each input s
 
 
 ChatGPT can make mistakes. Ch
+
+https://chatgpt.com/share/67695be4-b9e8-800e-9e45-5e60691b2c12
