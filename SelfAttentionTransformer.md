@@ -1,5 +1,5 @@
 
-Understanding self-attention in a Transformer encoder can be tricky, but let's break it down into simple concepts using an analogy with students in a classroom discussion.
+# Understanding self-attention in a Transformer encoder can be tricky, but let's break it down into simple concepts using an analogy with students in a classroom discussion.
 
 1. The Setup: A Classroom Discussion
 Imagine a classroom where each student represents a word in a sentence. Each student wants to understand the discussion better by paying attention to relevant students.
@@ -94,3 +94,269 @@ V = What I contribute to the discussion
 Self-attention = Paying attention to important classmates while ignoring irrelevant ones
 Multi-head attention = Listening to different types of discussions at once
 Does this explanation make sense? Let me know if you’d like a deeper breakdown
+
+#
+Great question! Now that we understand self-attention as a way of dynamically focusing on relevant information, let’s see how it becomes learnable through weights and biases using our classroom analogy.
+
+Step 1: Where Do the Weights and Biases Come In?
+In our classroom discussion analogy, we said that each student (word) has:
+
+Query (Q) → What they are looking for.
+Key (K) → How relevant they are to others.
+Value (V) → The actual information they contribute.
+But Q, K, and V are not just given to the model. Instead, they are learned transformations of the original word embeddings.
+
+Before Attention, We Transform Words into Q, K, V Using Learnable Weights
+Each word (student) starts with a word embedding (a numerical representation of its meaning). Before self-attention, we transform these embeddings using learnable weight matrices:
+
+𝑄
+=
+𝑋
+𝑊
+𝑄
+,
+𝐾
+=
+𝑋
+𝑊
+𝐾
+,
+𝑉
+=
+𝑋
+𝑊
+𝑉
+Q=XW 
+Q
+​
+ ,K=XW 
+K
+​
+ ,V=XW 
+V
+​
+ 
+Where:
+
+𝑋
+X = input word embeddings (e.g., "The", "cat", "sat", etc.).
+𝑊
+𝑄
+,
+𝑊
+𝐾
+,
+𝑊
+𝑉
+W 
+Q
+​
+ ,W 
+K
+​
+ ,W 
+V
+​
+  = learnable weight matrices that transform embeddings into Q, K, and V.
+This means that the model learns how to best ask (Q), advertise relevance (K), and share information (V) through training.
+
+Step 2: Learning Happens Through Backpropagation
+Once we compute attention scores and get the final output, the model compares its prediction to the correct answer using a loss function (e.g., cross-entropy for text classification or language modeling). Then, we update the weights using gradient descent.
+
+How Backpropagation Works Here
+Forward Pass:
+
+Compute Q, K, V using learnable weights 
+𝑊
+𝑄
+,
+𝑊
+𝐾
+,
+𝑊
+𝑉
+W 
+Q
+​
+ ,W 
+K
+​
+ ,W 
+V
+​
+ .
+Calculate attention scores using dot-product similarity between 
+𝑄
+Q and 
+𝐾
+K.
+Use softmax to normalize scores.
+Multiply attention scores by V to get the output.
+Compute Loss:
+
+The model’s final output is compared with the correct label.
+The loss function (like cross-entropy) measures the difference.
+Backpropagation:
+
+The loss is used to compute gradients.
+Gradients adjust 
+𝑊
+𝑄
+,
+𝑊
+𝐾
+,
+𝑊
+𝑉
+W 
+Q
+​
+ ,W 
+K
+​
+ ,W 
+V
+​
+  so the model improves its attention focus.
+Step 3: Why Are These Weights Learnable?
+Think of the weight matrices 
+𝑊
+𝑄
+,
+𝑊
+𝐾
+,
+𝑊
+𝑉
+W 
+Q
+​
+ ,W 
+K
+​
+ ,W 
+V
+​
+  as custom glasses that every student wears.
+
+At the beginning, these glasses might be blurry, meaning every student pays equal attention to everyone (random attention).
+As training progresses, the glasses become sharper, helping students pay attention to the most relevant classmates.
+Since 
+𝑊
+𝑄
+,
+𝑊
+𝐾
+,
+𝑊
+𝑉
+W 
+Q
+​
+ ,W 
+K
+​
+ ,W 
+V
+​
+  are learned through backpropagation, the model gradually figures out the best way to distribute attention across words.
+
+Step 4: What is the Role of Biases?
+In addition to weights, there are also biases in each transformation:
+
+𝑄
+=
+𝑋
+𝑊
+𝑄
++
+𝑏
+𝑄
+,
+𝐾
+=
+𝑋
+𝑊
+𝐾
++
+𝑏
+𝐾
+,
+𝑉
+=
+𝑋
+𝑊
+𝑉
++
+𝑏
+𝑉
+Q=XW 
+Q
+​
+ +b 
+Q
+​
+ ,K=XW 
+K
+​
+ +b 
+K
+​
+ ,V=XW 
+V
+​
+ +b 
+V
+​
+ 
+The biases 
+𝑏
+𝑄
+,
+𝑏
+𝐾
+,
+𝑏
+𝑉
+b 
+Q
+​
+ ,b 
+K
+​
+ ,b 
+V
+​
+  are small values that allow the model to shift the attention distribution slightly, making it more flexible.
+
+Final Analogy (Putting It All Together)
+Word embeddings (X) → Each student’s original knowledge.
+Weight matrices (
+𝑊
+𝑄
+,
+𝑊
+𝐾
+,
+𝑊
+𝑉
+W 
+Q
+​
+ ,W 
+K
+​
+ ,W 
+V
+​
+ ) → Custom glasses that help students ask the right questions (Q), advertise relevance (K), and contribute valuable information (V).
+Self-attention process → The discussion where students decide who to listen to based on their transformed Q/K.
+Training (Backpropagation) → Over time, students adjust their glasses (weights) so they focus on the most useful classmates.
+Bias terms → Small adjustments that help fine-tune focus.
+Summary
+Q, K, V are learned from word embeddings using weight matrices.
+The model updates these weight matrices through backpropagation.
+Backpropagation helps the model learn which words should focus on which other words.
+Over time, the attention mechanism becomes smarter, helping the model understand long-range relationships.
+
+
