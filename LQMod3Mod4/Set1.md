@@ -136,3 +136,32 @@ D. They remove the need for tokenization
 Answer: B
 Explanation: Transformer Decoders process the encoded input and generate output tokens sequentially, using self-attention and masked attention mechanisms.
 
+Medium Complexity Questions:
+
+How does layer normalization differ from batch normalization?
+Answer: Layer normalization normalizes across features within a single example, while batch normalization normalizes across the batch dimension.
+
+What is the primary limitation of recurrent neural networks (RNNs)?
+Answer: They struggle with long-range dependencies due to vanishing gradients.
+
+Why is self-attention more efficient than RNNs for long-range dependencies?
+Answer: Self-attention processes all words in parallel, avoiding sequential dependencies.
+
+How does BERT differ from traditional transformers?
+Answer: BERT is bidirectional, meaning it attends to both left and right context, unlike autoregressive transformers.
+
+Explain the significance of dropout in transformer architectures.
+Answer: Dropout prevents overfitting by randomly deactivating a subset of neurons during training.
+
+How does positional encoding work in Transformers?
+Answer: It adds sine and cosine functions to word embeddings to encode position information.
+
+Why are larger models like GPT-3 prone to hallucination?
+Answer: They rely on pattern matching rather than explicit reasoning, leading to confident but incorrect outputs.
+
+What is tokenization, and why is it crucial in NLP?
+Answer: Tokenization splits text into meaningful units (tokens) for processing.
+
+How does fine-tuning differ from training from scratch?
+Answer: Fine-tuning adapts a pre-trained model to a specific task, reducing training time and required data.
+
